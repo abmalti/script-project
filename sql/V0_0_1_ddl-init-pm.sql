@@ -97,6 +97,7 @@ CREATE TABLE pm.product
     symbol                     VARCHAR(255),
     product_class_english_name VARCHAR(255),
     load_date                  DATE,
+	security_type              VARCHAR(255) NOT NULL,
     created_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product_id),
@@ -277,20 +278,6 @@ CREATE TABLE pm.fund_pricing_fee
     PRIMARY KEY (fund_pricing_fee_id),
     FOREIGN KEY (currency_id) REFERENCES reference.currency (currency_id) ON UPDATE NO ACTION,
     FOREIGN KEY (fundserv_code_fund_id) REFERENCES pm.fundserv_code_fund (fundserv_code_fund_id) ON UPDATE NO ACTION
-);
-
-CREATE TABLE pm.fx_rate
-(
-    id            SERIAL,
-    date          INTEGER,
-    currency_from VARCHAR(255),
-    currency_to   VARCHAR(255),
-    rate          DECIMAL(5, 4),
-    load_date     DATE,
-    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    UNIQUE (date, currency_from, currency_to)
 );
 
 CREATE INDEX product_ldfk ON pm.product (load_date, fundata_key);

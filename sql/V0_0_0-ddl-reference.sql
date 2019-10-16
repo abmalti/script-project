@@ -68,7 +68,6 @@ CREATE TABLE reference.language
     PRIMARY KEY (language_code)
 );
 
--- TODO move country_of_birth and citezenship to relationships
 CREATE TABLE reference.individual
 (
     individual_id                           SERIAL,
@@ -114,4 +113,18 @@ CREATE TABLE reference.financial_institution
     financial_name_fr             VARCHAR(50),
 	financial_name_en             VARCHAR(50),
     PRIMARY KEY (financial_institution_id)
+);
+
+CREATE TABLE reference.fx_rate
+(
+    id            SERIAL,
+    date          INTEGER,
+    currency_from VARCHAR(255),
+    currency_to   VARCHAR(255),
+    rate          DECIMAL(5, 4),
+    load_date     DATE,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE (date, currency_from, currency_to)
 );
