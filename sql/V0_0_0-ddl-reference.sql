@@ -16,7 +16,7 @@ CREATE TABLE reference.province
 
 CREATE TABLE reference.currency
 (
-    currency_id           VARCHAR(3),
+    currency_code           VARCHAR(3),
     currency_numeric_code INTEGER,
     currency_minor_unit   INTEGER,
     currency_name_fr         VARCHAR(255),
@@ -24,7 +24,7 @@ CREATE TABLE reference.currency
     load_date             DATE,
     created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (currency_id)
+    PRIMARY KEY (currency_code)
 );
 
 CREATE TABLE reference.country
@@ -34,12 +34,12 @@ CREATE TABLE reference.country
 	name_en        VARCHAR(255),
     alpha2      VARCHAR(2),
     alpha3      VARCHAR(3),
-    currency_id VARCHAR(3),
+    currency_code VARCHAR(3),
     load_date   DATE,
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (country_code),
-    FOREIGN KEY (currency_id) REFERENCES reference.currency (currency_id) ON UPDATE NO ACTION
+    FOREIGN KEY (currency_code) REFERENCES reference.currency (currency_code) ON UPDATE NO ACTION
 );
 
 CREATE TABLE reference.address

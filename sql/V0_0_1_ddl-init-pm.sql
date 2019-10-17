@@ -269,14 +269,14 @@ CREATE TABLE pm.fund_pricing_fee
 (
     fund_pricing_fee_id   SERIAL,
     fundserv_code_fund_id INTEGER        NOT NULL,
-    currency_id           VARCHAR(3)     NOT NULL,
+    currency_code           VARCHAR(3)     NOT NULL,
     price                 DECIMAL(20, 8) NOT NULL,
     price_date            INTEGER,
     load_date             DATE,
     created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (fund_pricing_fee_id),
-    FOREIGN KEY (currency_id) REFERENCES reference.currency (currency_id) ON UPDATE NO ACTION,
+    FOREIGN KEY (currency_code) REFERENCES reference.currency (currency_code) ON UPDATE NO ACTION,
     FOREIGN KEY (fundserv_code_fund_id) REFERENCES pm.fundserv_code_fund (fundserv_code_fund_id) ON UPDATE NO ACTION
 );
 

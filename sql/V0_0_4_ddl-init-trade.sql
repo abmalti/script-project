@@ -25,7 +25,7 @@ CREATE TABLE trade.trade
     transaction_type        VARCHAR(2)     NOT NULL, -- Transaction type
     symbol                  VARCHAR(7),              -- Symbol
     cusip                   VARCHAR(10),             -- CUSIP
-    currency_id             VARCHAR(3),              -- Currency
+    currency_code             VARCHAR(3),              -- Currency
     gross_amount            DECIMAL(21, 2) NOT NULL, -- Gross Amount
     commission              DECIMAL(21, 2),          -- Commission
     net_amount              DECIMAL(21, 2) NOT NULL, -- Net Amount
@@ -40,7 +40,7 @@ CREATE TABLE trade.trade
     created_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (order_unique_id),
-    FOREIGN KEY (currency_id) REFERENCES reference.currency (currency_id)
+    FOREIGN KEY (currency_code) REFERENCES reference.currency (currency_code)
 );
 
 CREATE INDEX idx_trade_trade_date ON trade.trade (trade_date);
@@ -59,7 +59,7 @@ CREATE TABLE trade.trade_bond
     foreign_tax                         DECIMAL(21, 2),
     non_resident_withholding_tax_amount DECIMAL(21, 2),
     client_settle_amount                DECIMAL(21, 2),
-    client_settle_currency_id           VARCHAR(8),
+    client_settle_currency_code           VARCHAR(8),
     wire_order_number                   VARCHAR(20),
     trade_basis                         INTEGER,
     other_plan_account_number           VARCHAR(15),
@@ -192,9 +192,9 @@ CREATE TABLE trade.trade_equity
     foreign_tax                         DECIMAL(21, 2),
     non_resident_withholding_tax_amount DECIMAL(21, 2),
     client_settle_amount                DECIMAL(21, 2),
-    client_settle_currency_id           VARCHAR(8),
+    client_settle_currency_code         VARCHAR(3),
     exchange_code                       VARCHAR(8),
-    exchange_currency_id                VARCHAR(3),
+    exchange_currency_code              VARCHAR(3),
     wire_order_number                   VARCHAR(20),
     trade_basis                         INTEGER,
     other_plan_account_number           VARCHAR(15),
@@ -238,7 +238,8 @@ CREATE TABLE trade.trade_equity
     updated_at                          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (order_unique_id),
     FOREIGN KEY (order_unique_id) REFERENCES trade.trade (order_unique_id),
-    FOREIGN KEY (exchange_currency_id) REFERENCES reference.currency (currency_id)
+    FOREIGN KEY (client_settle_currency_code) REFERENCES reference.currency (currency_code),
+    FOREIGN KEY (exchange_currency_code) REFERENCES reference.currency (currency_code)
 );
 
 
@@ -264,7 +265,7 @@ CREATE TABLE trade.trade_fund
     updated_at                          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (order_unique_id),
     FOREIGN KEY (order_unique_id) REFERENCES trade.trade (order_unique_id),
-    FOREIGN KEY (eft_bank_account_currency) REFERENCES reference.currency (currency_id)
+    FOREIGN KEY (eft_bank_account_currency) REFERENCES reference.currency (currency_code)
 );
 
 
