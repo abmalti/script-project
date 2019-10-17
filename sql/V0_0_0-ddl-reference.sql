@@ -29,7 +29,7 @@ CREATE TABLE reference.currency
 
 CREATE TABLE reference.country
 (
-    country_id  SERIAL,
+    country_code  SERIAL,
     name_fr        VARCHAR(255),
 	name_en        VARCHAR(255),
     alpha2      VARCHAR(2),
@@ -38,7 +38,7 @@ CREATE TABLE reference.country
     load_date   DATE,
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (country_id),
+    PRIMARY KEY (country_code),
     FOREIGN KEY (currency_id) REFERENCES reference.currency (currency_id) ON UPDATE NO ACTION
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE reference.address
     cell_phone VARCHAR(10),
     other_phone     VARCHAR(10),
     fax             VARCHAR(10),
-	country_id      INTEGER REFERENCES reference.country (country_id),
+	country_code      INTEGER REFERENCES reference.country (country_code),
     PRIMARY KEY (address_id)
 );
 
@@ -79,7 +79,7 @@ CREATE TABLE reference.individual
     civil_status                            VARCHAR(25) NOT NULL CHECK (civil_status IN ('Married', 'Common law', 'Divorced', 'Single', 'Separated', 'Widowed')),
     social_insurance_number                 VARCHAR(9),
     date_of_birth                           DATE NOT NULL,
-    country_of_birth_id                     INTEGER REFERENCES reference.country (country_id),
+    country_of_birth_id                     INTEGER REFERENCES reference.country (country_code),
     citizenship                             VARCHAR(50) NOT NULL,
     personal_address_id                     BIGINT NOT NULL,
     primary_personal_email_address          VARCHAR(255),
