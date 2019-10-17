@@ -85,7 +85,7 @@ CREATE TABLE pm.product
     alternate_market_code      VARCHAR(255),
     ask_price                  DECIMAL(20, 8),
     bid_price                  DECIMAL(20, 8),
-    currency_code              VARCHAR(255),
+    currency_code              VARCHAR(3),
     cusip_number               VARCHAR(255),
     dataphile_customer_code    VARCHAR(255),
     expiry_date                DATE,
@@ -101,6 +101,7 @@ CREATE TABLE pm.product
     created_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product_id),
+    FOREIGN KEY (currency_code) REFERENCES reference.currency (currency_code),
     CHECK (product_class_category IN ('EQUITY', 'OPTION', 'FUND', 'BOND'))
 );
 
@@ -112,7 +113,7 @@ CREATE TABLE pm.fund
     cifsc_type_id                   INTEGER        NULL REFERENCES pm.cifsc_type(cifsc_type_id),
     associated_benchmark_id         INTEGER        NULL,
     available_in_province           VARCHAR(50)    NULL,
-    currency                        VARCHAR(3)     NULL,
+    currency_code                   VARCHAR(3)     NULL,
     distribution_frequency          VARCHAR(25)    NULL,
     english_classification          VARCHAR(255)   NULL,
     english_concise_fund_objective  VARCHAR(255)   NULL,
@@ -215,7 +216,8 @@ CREATE TABLE pm.fund
     CONSTRAINT fund_id
         UNIQUE (fund_id),
     CONSTRAINT product_risk_rating_fk
-        FOREIGN KEY (product_risk_rating_id) REFERENCES pm.product_risk_rating (product_risk_rating_id)
+        FOREIGN KEY (product_risk_rating_id) REFERENCES pm.product_risk_rating (product_risk_rating_id),
+    FOREIGN KEY (currency_code) REFERENCES reference.currency (currency_code)
 );
 
 CREATE INDEX fund_fundata_key
