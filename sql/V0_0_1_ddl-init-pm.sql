@@ -101,7 +101,6 @@ CREATE TABLE pm.product
     product_class_english_name VARCHAR(255),
     load_date                  DATE,
 	security_type              VARCHAR(255) NOT NULL,
-    load_date       DATE,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product_id),
