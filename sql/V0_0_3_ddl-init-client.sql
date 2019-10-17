@@ -67,8 +67,8 @@ CREATE TABLE client.client
     kyc_date                                                DATE,
     kyc_reviewed_date                                       DATE,
     comment                                                 VARCHAR(255),
-    created_at                                              TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                                              TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (client_id)
 );
 
@@ -170,8 +170,9 @@ CREATE TABLE client.account
     return_this_quarter_percent_minus_1                 DECIMAL(6, 2),
     return_this_quarter_percent_minus_2                 DECIMAL(6, 2),
     return_this_quarter_percent_minus_3                 DECIMAL(6, 2),
-    created_at                                          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                                          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_date       DATE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (account_number)
 );
 
@@ -179,6 +180,7 @@ CREATE TABLE client.client_account
 (
     client_id       INTEGER REFERENCES client.client (client_id),
     account_number  VARCHAR(25) REFERENCES client.account (account_number),
+    load_date       DATE,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (client_id, account_number)

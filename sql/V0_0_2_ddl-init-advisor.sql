@@ -6,8 +6,8 @@ CREATE TABLE advisor.advisor_code
     advisor_code           INTEGER,
     advisor_code_status    VARCHAR(25) CHECK (advisor_code_status IN ('ACTIVE', 'PENDING', 'INACTIVE')),
     advisor_code_team_name VARCHAR(255),
-    created_at             TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at             TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (advisor_code)
 );
 
@@ -26,8 +26,8 @@ CREATE TABLE advisor.business_region
 (
     business_region_id      SERIAL,
     region_name             VARCHAR(255),
-    created_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (business_region_id)
 );
 
@@ -37,8 +37,8 @@ CREATE TABLE advisor.company
     company_name                VARCHAR(255),
     company_logo                BYTEA,
     company_web_site_address    VARCHAR(255),
-    created_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (company_id)
 );
 
@@ -46,8 +46,8 @@ CREATE TABLE advisor.dealer_code
 (
     dealer_code         INTEGER,
     regulatory_body     VARCHAR(10) CHECK (regulatory_body IN ('IIROC', 'MFDA')),
-    created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (dealer_code)
 );
 
@@ -81,8 +81,8 @@ CREATE TABLE advisor.advisor
     primary_mailing_address          VARCHAR(25) NOT NULL CHECK (primary_mailing_address IN ('BRANCH', 'PERSONAL', 'BUSINESS')) DEFAULT 'BUSINESS ',
     status                           VARCHAR(30) NOT NULL CHECK (status IN ('Active', 'Inactive')),
     comment                          VARCHAR(255),
-    created_at                       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (advisor_id)
 );
 
@@ -96,8 +96,8 @@ CREATE TABLE advisor.external_investment_account
     account_number                  VARCHAR(15),
     opening_date                    DATE,
     closing_date                    DATE,
-    created_at                      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (external_investment_accounts_id)
 );
 
@@ -117,8 +117,8 @@ CREATE TABLE advisor.outside_business_activity
     description                    VARCHAR(70),
     start_date                     DATE,
     end_date                       DATE,
-    created_at                     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (outside_business_activities_id)
 );
 
@@ -150,8 +150,8 @@ CREATE TABLE advisor.license
     license_inscription_date    DATE,
     license_expiry_date         DATE,
     registration_province_code  VARCHAR(2) REFERENCES reference.province(province_code),
-    created_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (license_number)
 );
 

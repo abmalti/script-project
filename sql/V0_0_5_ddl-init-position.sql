@@ -10,6 +10,9 @@ CREATE TABLE position.position
     quantity                                                       DECIMAL(14, 4),
     book_value                                                     DECIMAL(21, 6),
     end_of_month_value                                             DECIMAL(21, 6),
+    load_date       DATE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (position_id),
     UNIQUE (account_number,cusip)
 );

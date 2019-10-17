@@ -53,8 +53,9 @@ CREATE TABLE pm.product_risk_rating
     rating_code            VARCHAR(25) NOT NULL UNIQUE,
     english_description    VARCHAR(50),
     french_description     VARCHAR(50),
-    created_at             TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at             TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_date       DATE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product_risk_rating_id)
 );
 
@@ -62,8 +63,9 @@ CREATE TABLE pm.product_class_category
 (
     product_class_category_id SERIAL,
     name                      VARCHAR(255) NOT NULL UNIQUE,
-    created_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_date       DATE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product_class_category_id)
 );
 
@@ -72,8 +74,9 @@ CREATE TABLE pm.product_class
     product_class_id          SERIAL,
     name                      VARCHAR(255) NULL UNIQUE,
     product_class_category_id INTEGER      NOT NULL REFERENCES pm.product_class_category(product_class_category_id),
-    created_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_date       DATE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product_class_id)
 );
 
@@ -98,8 +101,9 @@ CREATE TABLE pm.product
     product_class_english_name VARCHAR(255),
     load_date                  DATE,
 	security_type              VARCHAR(255) NOT NULL,
-    created_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at                 TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_date       DATE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (product_id),
     FOREIGN KEY (currency_code) REFERENCES reference.currency (currency_code),
     CHECK (product_class_category IN ('EQUITY', 'OPTION', 'FUND', 'BOND'))
@@ -248,8 +252,9 @@ CREATE TABLE pm.fund_load_type
 (
     fund_load_type_id SERIAL,
     name              VARCHAR(40) NOT NULL,
-    created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_date       DATE,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (fund_load_type_id)
 );
 

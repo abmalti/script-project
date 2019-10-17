@@ -10,6 +10,7 @@ CREATE TABLE reference.province
     province_code              VARCHAR(2),
     name_fr                       VARCHAR(50),
 	name_en                       VARCHAR(50),
+	load_date     DATE,
     PRIMARY KEY (province_code)
 );
 
@@ -21,9 +22,7 @@ CREATE TABLE reference.currency
     currency_minor_unit   INTEGER,
     currency_name_fr         VARCHAR(255),
 	currency_name_en         VARCHAR(255),
-    load_date             DATE,
-    created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	load_date     DATE,
     PRIMARY KEY (currency_code)
 );
 
@@ -35,9 +34,7 @@ CREATE TABLE reference.country
     alpha2      VARCHAR(2),
     alpha3      VARCHAR(3),
     currency_code VARCHAR(3),
-    load_date   DATE,
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    load_date     DATE,
     PRIMARY KEY (country_code),
     FOREIGN KEY (currency_code) REFERENCES reference.currency (currency_code) ON UPDATE NO ACTION
 );
@@ -56,6 +53,8 @@ CREATE TABLE reference.address
     other_phone     VARCHAR(10),
     fax             VARCHAR(10),
 	country_code      INTEGER REFERENCES reference.country (country_code),
+    created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (address_id)
 );
 
@@ -84,6 +83,8 @@ CREATE TABLE reference.individual
     personal_address_id                     BIGINT NOT NULL,
     primary_personal_email_address          VARCHAR(255),
     secondary_personal_email_address        VARCHAR(255),
+    created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (individual_id ),
     FOREIGN KEY(personal_address_id) REFERENCES  reference.address (address_id)
 );
@@ -95,6 +96,7 @@ CREATE TABLE reference.role
 	name_en            VARCHAR(35),
     description_fr     VARCHAR(35),
 	description_en     VARCHAR(35),
+	load_date     DATE,
     PRIMARY KEY (role_id )
 );
 
@@ -112,6 +114,7 @@ CREATE TABLE reference.financial_institution
     financial_institution_id   INTEGER,
     financial_name_fr             VARCHAR(50),
 	financial_name_en             VARCHAR(50),
+	load_date     DATE,
     PRIMARY KEY (financial_institution_id)
 );
 
