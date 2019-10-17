@@ -144,8 +144,8 @@ CREATE TABLE client.account
     risk_tolerance_medium_mfda                          INTEGER,
     risk_tolerance_medium_to_high_mfda                  INTEGER,
     risk_tolerance_high_mfda                            INTEGER,
-    time_horizon_iiroc                                  VARCHAR(20) NOT NULL CHECK (time_horizon_iiroc IN ('1 to 2 years', '3 to 5 years', '6 to 9 years', '10 years and more')),
-    time_horizon_mfda                                   VARCHAR(20) NOT NULL CHECK (time_horizon_mfda IN ('Less than 1 year', 'Between 1 to 3 years', 'Between 4 to 5 years', 'Between 6 to 9 years', 'More than 10 years')),
+    time_horizon_iiroc                                  VARCHAR(20) CHECK (time_horizon_iiroc IN ('1 to 2 years', '3 to 5 years', '6 to 9 years', '10 years and more')),
+    time_horizon_mfda                                   VARCHAR(20) CHECK (time_horizon_mfda IN ('Less than 1 year', 'Between 1 to 3 years', 'Between 4 to 5 years', 'Between 6 to 9 years', 'More than 10 years')),
     intended_use_of_the_account                         VARCHAR(20) CHECK (intended_use_of_the_account IN ('Income generation', 'Long-term investment', 'Retirement savings', 'Savings', 'Short-term investment')),
     third_party_financial_benefits                      BOOLEAN NOT NULL,
     third_party_on_the_account                          BOOLEAN NOT NULL,
@@ -172,7 +172,7 @@ CREATE TABLE client.account
     return_this_quarter_percent_minus_3                 DECIMAL(6, 2),
     load_date       DATE,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,	
     PRIMARY KEY (account_number)
 );
 

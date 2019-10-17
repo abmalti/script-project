@@ -131,3 +131,12 @@ CREATE TABLE reference.fx_rate
     PRIMARY KEY (id),
     UNIQUE (date, currency_from, currency_to)
 );
+
+
+CREATE TABLE reference.platform
+(
+    platform_id              INTEGER,
+    platform_name            VARCHAR(30),
+	load_date     DATE,
+    PRIMARY KEY (platform_id)
+);
