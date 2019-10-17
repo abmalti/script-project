@@ -59,7 +59,7 @@ CREATE TABLE trade.trade_bond
     foreign_tax                         DECIMAL(21, 2),
     non_resident_withholding_tax_amount DECIMAL(21, 2),
     client_settle_amount                DECIMAL(21, 2),
-    client_settle_currency_code           VARCHAR(8),
+    client_settle_currency_code         VARCHAR(3),
     wire_order_number                   VARCHAR(20),
     trade_basis                         INTEGER,
     other_plan_account_number           VARCHAR(15),
@@ -102,7 +102,8 @@ CREATE TABLE trade.trade_bond
     created_at                          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at                          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (order_unique_id),
-    FOREIGN KEY (order_unique_id) REFERENCES trade.trade (order_unique_id)
+    FOREIGN KEY (order_unique_id) REFERENCES trade.trade (order_unique_id),
+    FOREIGN KEY (client_settle_currency_code) REFERENCES reference.currency (currency_code)
 );
 
 CREATE TABLE trade.trade_demand
@@ -256,7 +257,7 @@ CREATE TABLE trade.trade_fund
     eft_bank_account_institution_number VARCHAR(3),
     eft_bank_account_transit            VARCHAR(5),
     eft_bank_account_number             VARCHAR(12),
-    eft_bank_account_currency           VARCHAR(3),
+    eft_bank_account_currency_code           VARCHAR(3),
     eft_bank_account_holder_name        VARCHAR(40),
     assigned_quantity                   DECIMAL(14, 4),
     unassigned_quantity                 DECIMAL(14, 4),
@@ -265,7 +266,7 @@ CREATE TABLE trade.trade_fund
     updated_at                          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (order_unique_id),
     FOREIGN KEY (order_unique_id) REFERENCES trade.trade (order_unique_id),
-    FOREIGN KEY (eft_bank_account_currency) REFERENCES reference.currency (currency_code)
+    FOREIGN KEY (eft_bank_account_currency_code) REFERENCES reference.currency (currency_code)
 );
 
 
