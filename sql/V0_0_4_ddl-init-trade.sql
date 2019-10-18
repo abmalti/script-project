@@ -24,7 +24,7 @@ CREATE TABLE trade.trade
     advisor_code            VARCHAR(5)     NOT NULL, -- Advisor code
     transaction_type        VARCHAR(2)     NOT NULL, -- Transaction type
     symbol                  VARCHAR(7),              -- Symbol
-    cusip                   VARCHAR(10),             -- CUSIP
+    cusip                   VARCHAR(10) NOT NULL,             -- CUSIP
     currency_code             VARCHAR(3),              -- Currency
     gross_amount            DECIMAL(21, 2) NOT NULL, -- Gross Amount
     commission              DECIMAL(21, 2),          -- Commission
