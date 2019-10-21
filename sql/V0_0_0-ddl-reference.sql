@@ -64,6 +64,7 @@ CREATE TABLE reference.language
     language_code VARCHAR(2),
     english_name  VARCHAR(50),
     native_name   VARCHAR(50),
+    load_date     DATE,
     PRIMARY KEY (language_code)
 );
 
@@ -78,6 +79,7 @@ CREATE TABLE reference.individual
     civil_status                            VARCHAR(25) NOT NULL CHECK (civil_status IN ('Married', 'Common law', 'Divorced', 'Single', 'Separated', 'Widowed')),
     social_insurance_number                 VARCHAR(9),
     date_of_birth                           DATE NOT NULL,
+    date_of_decease                         DATE,
     country_of_birth_id                     INTEGER REFERENCES reference.country (country_code),
     citizenship                             VARCHAR(50) NOT NULL,
     personal_address_id                     BIGINT NOT NULL,
@@ -121,11 +123,10 @@ CREATE TABLE reference.financial_institution
 CREATE TABLE reference.fx_rate
 (
     id            SERIAL,
-    date          INTEGER,
-    currency_from VARCHAR(255),
-    currency_to   VARCHAR(255),
-    rate          DECIMAL(5, 4),
-    load_date     DATE,
+    date          INTEGER NOT NULL,
+    currency_from VARCHAR(255) NOT NULL,
+    currency_to   VARCHAR(255) NOT NULL,
+    rate          DECIMAL(5, 4) NOT NULL,
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),

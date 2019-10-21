@@ -89,7 +89,7 @@ CREATE TABLE pm.product
     ask_price                  DECIMAL(20, 8),
     bid_price                  DECIMAL(20, 8),
     currency_code              VARCHAR(3),
-    cusip                      VARCHAR(255) NOT NULL UNIQUE,
+    cusip                      VARCHAR(255) UNIQUE,
     dataphile_customer_code    VARCHAR(255),
     expiry_date                DATE,
     interest_rate              DECIMAL(20, 8),
