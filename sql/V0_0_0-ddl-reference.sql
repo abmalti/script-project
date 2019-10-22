@@ -94,10 +94,10 @@ CREATE TABLE reference.individual
 CREATE TABLE reference.role
 (
     role_id         SERIAL,
-    name_fr            VARCHAR(35),
-	name_en            VARCHAR(35),
-    description_fr     VARCHAR(35),
-	description_en     VARCHAR(35),
+    name_fr            VARCHAR(50),
+	name_en            VARCHAR(50),
+    description_fr     VARCHAR(255),
+	description_en     VARCHAR(255),
 	load_date     DATE,
     PRIMARY KEY (role_id )
 );
