@@ -72,6 +72,24 @@ CREATE TABLE reference.language
 CREATE TABLE reference.individual
 (
     individual_id                           SERIAL,
+    address_id                              BIGINT NOT NULL,
+    communication_language_id               VARCHAR(2),
+    temporary_mailing_address_id            BIGINT,
+    primary_email_address                   VARCHAR(75),
+    secondary_email_address                 VARCHAR(75),
+    bank_name                               VARCHAR(100),
+    bank_transit_number                     VARCHAR(10),
+    bank_name                               VARCHAR(100),
+    created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (individual_id),
+    FOREIGN KEY(personal_address_id) REFERENCES  reference.address (address_id)
+);
+
+
+CREATE TABLE reference.individual_person
+(
+    individual_id                           SERIAL,
     first_name                              VARCHAR(35) NOT NULL,
     middle_name                             VARCHAR(35) NOT NULL,
     last_name                               VARCHAR(35) NOT NULL,
@@ -79,18 +97,33 @@ CREATE TABLE reference.individual
     gender                                  VARCHAR(1)  NOT NULL CHECK (gender IN ('M', 'F')),
     civil_status                            VARCHAR(25) CHECK (civil_status IN ('MARRIED', 'COMMON LAW', 'DIVORCED', 'SINGLE', 'SEPARATED', 'WIDOWED')),
     social_insurance_number                 VARCHAR(9),
+    us_social_security_number               VARCHAR(9),
     date_of_birth                           DATE NOT NULL,
     date_of_decease                         DATE,
     country_of_birth_id                     INTEGER REFERENCES reference.country (country_code),
     citizenship                             VARCHAR(50),
-    personal_address_id                     BIGINT NOT NULL,
-    primary_personal_email_address          VARCHAR(255),
-    secondary_personal_email_address        VARCHAR(255),
+    residency_for_tax_purpose               VARCHAR(50),
     created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (individual_id ),
-    FOREIGN KEY(personal_address_id) REFERENCES  reference.address (address_id)
+    PRIMARY KEY (individual_id),
+    FOREIGN KEY(individual_id) REFERENCES  reference.individual (individual_id)
 );
+
+CREATE TABLE reference.individual_company
+(
+    individual_company_id            SERIAL,
+    company_name                     VARCHAR(150) NOT NULL,
+    neq                              VARCHAR(25) NOT NULL,
+    cra_business_number              VARCHAR(25),
+    created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (individual_company_id ),
+    FOREIGN KEY(individual_company_id) REFERENCES  reference.individual (individual_id)
+);
+
+
+
+
 
 CREATE TABLE reference.role
 (
