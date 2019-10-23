@@ -6,6 +6,7 @@ CREATE TABLE trade.trade_type
     trade_type_id SERIAL,
 	label_fr         VARCHAR(18)    NOT NULL,
 	label_en         VARCHAR(18)    NOT NULL,
+	load_date        Date,
 	PRIMARY KEY (trade_type_id)
 );
 

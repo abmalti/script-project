@@ -1,0 +1,21 @@
+insert into trade.trade_type(trade_type_id,label_en,label_fr,load_date) values
+(1,'Buy','Achat',now()),
+(2,'Sell','Vente',now()),
+(3,'Switch','Switch',now()),
+(4,'ROC','ROC',now()),
+(5,'Distribution','Distribution',now()),
+(6,'Transfer','Transfert',now()),
+(7,'Reorg','Reorg',now()),
+(8,'Dividend','Dividende',now()),
+(9,'Interest','Intérêt',now()),
+(10,'Adjustment','Ajustement',now()),
+(11,'Fee','Frais',now()),
+(12,'Deposit','Dépôt',now()),
+(13,'Withdrawal','Retrait',now()),
+(14,'Redemption','Rachat',now()),
+(15,'Rollover','Roulement',now()),
+(16,'Maturity','Maturité',now()),
+(17,'Exercise','Exercice',now()),
+(18,'Expiry','Expiration',now()),
+(19,'RTS / WTS','RTS / WTS',now());
+
