@@ -4,7 +4,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA position TO peak;
 CREATE TABLE position.position
 (
 	position_id                                                    SERIAL,
-    account_number                                                 VARCHAR(25)  REFERENCES client.account(account_number),
+    account_id                                                     INTEGER  REFERENCES client.account(account_id),
     cusip                                                          VARCHAR(10),
 	symbol                                                          VARCHAR(10),
     last_purchase_date                                             DATE,
@@ -15,8 +15,8 @@ CREATE TABLE position.position
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (position_id),
-    UNIQUE (account_number,cusip),
-    UNIQUE (account_number,cusip),
+    UNIQUE (account_id,cusip),
+    UNIQUE (account_id,cusip),
 	FOREIGN KEY (cusip) REFERENCES pm.product(cusip),
 	FOREIGN KEY (symbol) REFERENCES pm.product(symbol)
 );

@@ -13,7 +13,7 @@ CREATE TABLE trade.trade
 (
     order_unique_id         VARCHAR(18)    NOT NULL, -- Order unique ID
     trade_type_id			INTEGER        NOT NULL REFERENCES trade.trade_type (trade_type_id),
-    account_number          VARCHAR(25)    NOT NULL REFERENCES client.account (account_number),
+    account_id              INTEGER    NOT NULL REFERENCES client.account (account_id),
     product_type            VARCHAR(12)    NOT NULL, -- Trade category
     dealer_code             VARCHAR(4)     NOT NULL, -- Dealer code
     advisor_code            VARCHAR(5)     NOT NULL, -- Advisor code
