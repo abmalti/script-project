@@ -24,8 +24,8 @@ CREATE TABLE client.client
     personal_net_worth_total                                DECIMAL(15, 2) NOT NULL,
     estimated_annual_income                                 DECIMAL(15, 2) ,
     occupation_type                                         VARCHAR(25) CHECK (occupation_type IN ('EMPLOYED', 'SELF-EMPLOYED', 'RETIRED', 'UNEMPLOYED')),
-    occupation_position                                     VARCHAR(35),
-    type_of_business                                        VARCHAR(35),
+    occupation_position                                     VARCHAR(70),
+    type_of_business                                        VARCHAR(70),
     employer_name                                           VARCHAR(70),
     employer_address                                        VARCHAR(255),
     telephone_work                                          VARCHAR(20),
@@ -87,8 +87,8 @@ CREATE TABLE client.client_language
 
 CREATE TABLE client.account
 (
-    account_number                                      VARCHAR(25) NOT NULL,
-    client_number                                       VARCHAR(10) NOT NULL ,
+    account_id                                          SERIAL,
+    platform_internal_account_id                        VARCHAR(25),
     advisor_code                                        INTEGER  REFERENCES advisor.advisor_code (advisor_code),
     account_ownership                                   VARCHAR(30) NOT NULL  CHECK (account_ownership IN ('CORPORATE ACCOUNT', 'INDIVIDUAL ACCOUNT', 'INDIVIDUAL TRUST ACCOUNT', 'JOINT ACCOUNT', 'JOINT TRUST ACCOUNT', 'JOINT TRUST ACCOUNT WITH RIGHTS OF SURVIVORSHIP', 'MANAGED ACCOUNT', 'TENANTS IN COMMON')),
     account_type                                        VARCHAR(30) NOT NULL  CHECK (account_ownership IN ('CASH (CAD / USD)', 'DELIVERY AGAINST PAYMENT (DAP) (CAD / USD)', 'LEVERAGE LOAN (CAD ONLY)', 'LEVERAGE LOAN (CAD / USD)', 'MARGIN (CAD / USD)', 'RESP', 'RESP (CAD ONLY)', 'RRIF / LIF', 'RRIF / LIF (CAD ONLY)', 'RRSP / LIRA', 'RRSP/LIRA (CAD ONLY)', 'SPOUSAL RRSP', 'SPOUSAL RRSP (CAD ONLY)', 'TFSA', 'TFSA (CAD ONLY)')),
@@ -149,15 +149,15 @@ CREATE TABLE client.account
     load_date       DATE,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,	
-    PRIMARY KEY (account_number)
+    PRIMARY KEY (account_id)
 );
 
 CREATE TABLE client.client_account
 (
     client_id       INTEGER REFERENCES client.client (client_id),
-    account_number  VARCHAR(25) REFERENCES client.account (account_number),
+    account_id  INTEGER REFERENCES client.account (account_id),
     load_date       DATE,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (client_id, account_number)
+    PRIMARY KEY (client_id, account_id)
 );
