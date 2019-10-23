@@ -5,6 +5,8 @@ CREATE TABLE client.client
 (
     client_id                                               SERIAL,
     individual_id                                           INTEGER  REFERENCES reference.individual (individual_id),
+    platform_id                                             INTEGER  REFERENCES reference.platform (platform_id),
+    platform_client_id                                      VARCHAR(15) NOT NULL,
     other_name                                              VARCHAR(255),
     communication_language                                  VARCHAR(2) CHECK (communication_language IN ('EN', 'FR')),
     document_delivery_method                                VARCHAR(20) CHECK (document_delivery_method IN ('PAPER', 'ELECTRONIC')),
@@ -26,7 +28,7 @@ CREATE TABLE client.client
     type_of_business                                        VARCHAR(35),
     employer_name                                           VARCHAR(70),
     employer_address                                        VARCHAR(255),
-    telephone_work                                          VARCHAR(10),
+    telephone_work                                          VARCHAR(20),
     number_of_years_with_current_employer                   INTEGER,
     investment_knowledge                                    VARCHAR(25)  CHECK (investment_knowledge IN ('POOR', 'FAIR', 'GOOD', 'SOPHISTICATED')),
     control_10_percent_of_a_public_company                  BOOLEAN ,
