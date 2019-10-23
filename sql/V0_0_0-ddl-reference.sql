@@ -77,13 +77,12 @@ CREATE TABLE reference.individual
     temporary_mailing_address_id            BIGINT,
     primary_email_address                   VARCHAR(75),
     secondary_email_address                 VARCHAR(75),
-    bank_name                               VARCHAR(100),
     bank_transit_number                     VARCHAR(10),
     bank_name                               VARCHAR(100),
     created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (individual_id),
-    FOREIGN KEY(personal_address_id) REFERENCES  reference.address (address_id)
+    FOREIGN KEY(address_id) REFERENCES  reference.address (address_id)
 );
 
 
