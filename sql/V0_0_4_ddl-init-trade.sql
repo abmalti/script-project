@@ -1,11 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS trade;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA trade TO peak;
 
-CREATE TABLE trade.system_date
-(
-    system_date DATE
-);
-
 CREATE TABLE trade.trade_type
 (
     trade_type_id SERIAL,
@@ -22,7 +17,6 @@ CREATE TABLE trade.trade
     product_type            VARCHAR(12)    NOT NULL, -- Trade category
     dealer_code             VARCHAR(4)     NOT NULL, -- Dealer code
     advisor_code            VARCHAR(5)     NOT NULL, -- Advisor code
-    transaction_type        VARCHAR(2)     NOT NULL, -- Transaction type
     symbol                  VARCHAR(7),              -- Symbol
     cusip                   VARCHAR(10) NOT NULL,             -- CUSIP
     currency_code             VARCHAR(3),              -- Currency

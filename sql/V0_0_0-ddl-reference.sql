@@ -3,6 +3,7 @@
  *  ENGINE: postgresql
  */
 CREATE SCHEMA IF NOT EXISTS reference;
+
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA reference TO peak;
 
 CREATE TABLE reference.province
@@ -74,14 +75,14 @@ CREATE TABLE reference.individual
     first_name                              VARCHAR(35) NOT NULL,
     middle_name                             VARCHAR(35) NOT NULL,
     last_name                               VARCHAR(35) NOT NULL,
-    salutation                              VARCHAR(50) NOT NULL CHECK (salutation IN ('Corp','Dr','Miss','Mr','Mrs','Ms','Prof')),
+    salutation                              VARCHAR(50) NOT NULL CHECK (salutation IN ('CORP','DR','MISS','MR','MRS','MS','PROF')),
     gender                                  VARCHAR(1)  NOT NULL CHECK (gender IN ('M', 'F')),
-    civil_status                            VARCHAR(25) NOT NULL CHECK (civil_status IN ('Married', 'Common law', 'Divorced', 'Single', 'Separated', 'Widowed')),
+    civil_status                            VARCHAR(25) CHECK (civil_status IN ('MARRIED', 'COMMON LAW', 'DIVORCED', 'SINGLE', 'SEPARATED', 'WIDOWED')),
     social_insurance_number                 VARCHAR(9),
     date_of_birth                           DATE NOT NULL,
     date_of_decease                         DATE,
     country_of_birth_id                     INTEGER REFERENCES reference.country (country_code),
-    citizenship                             VARCHAR(50) NOT NULL,
+    citizenship                             VARCHAR(50),
     personal_address_id                     BIGINT NOT NULL,
     primary_personal_email_address          VARCHAR(255),
     secondary_personal_email_address        VARCHAR(255),
