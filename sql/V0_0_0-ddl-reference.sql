@@ -72,6 +72,7 @@ CREATE TABLE reference.language
 CREATE TABLE reference.individual
 (
     individual_id                           SERIAL,
+    INDIVIDUAL_TYPE                         varchar(50) not null,
     address_id                              BIGINT NOT NULL,
     communication_language_id               VARCHAR(2),
     temporary_mailing_address_id            BIGINT,
