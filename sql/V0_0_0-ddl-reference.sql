@@ -142,3 +142,12 @@ CREATE TABLE reference.platform
 	load_date     DATE,
     PRIMARY KEY (platform_id)
 );
+
+CREATE TABLE reference.status
+(
+    status_id              INTEGER,
+    status_name_fr            VARCHAR(50),
+    status_name_en            VARCHAR(50),
+	load_date     DATE,
+    PRIMARY KEY (status_id)
+);
