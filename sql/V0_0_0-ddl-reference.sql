@@ -111,14 +111,14 @@ CREATE TABLE reference.individual_person
 
 CREATE TABLE reference.individual_company
 (
-    individual_company_id            SERIAL,
+    individual_id            SERIAL,
     company_name                     VARCHAR(150) NOT NULL,
     neq                              VARCHAR(25) NOT NULL,
     cra_business_number              VARCHAR(25),
     created_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at            TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (individual_company_id ),
-    FOREIGN KEY(individual_company_id) REFERENCES  reference.individual (individual_id)
+    PRIMARY KEY (individual_id ),
+    FOREIGN KEY(individual_id) REFERENCES  reference.individual (individual_id)
 );
 
 
