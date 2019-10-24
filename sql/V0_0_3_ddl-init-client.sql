@@ -14,7 +14,6 @@ CREATE TABLE client.client
     household_name										    VARCHAR(255),
     household_head										    VARCHAR(255),
     other_name                                              VARCHAR(255),
-    communication_language                                  VARCHAR(2) CHECK (communication_language IN ('EN', 'FR')),
     us_social_security_number                               VARCHAR(9),
     residency_for_tax_purposes                              VARCHAR(50),
     neq                                                     VARCHAR(25),
@@ -81,7 +80,7 @@ CREATE TABLE client.client
 
 CREATE TABLE client.client_language
 (
-    client_id       INTEGER REFERENCES client.client (client_id),
+    client_id       INTEGER REFERENCES client.client (client_id) ON DELETE CASCADE,
     language_code   VARCHAR(2)  REFERENCES reference.language(language_code),
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

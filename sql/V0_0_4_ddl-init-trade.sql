@@ -12,7 +12,7 @@ CREATE TABLE trade.trade_type
 
 CREATE TABLE trade.trade
 (
-    order_unique_id         VARCHAR(18)    NOT NULL, -- Order unique ID
+    order_unique_id         SERIAL, -- Order unique ID
     trade_type_id			INTEGER        NOT NULL REFERENCES trade.trade_type (trade_type_id),
     account_id              INTEGER    NOT NULL REFERENCES client.account (account_id),
     product_type            VARCHAR(12)    NOT NULL, -- Trade category
@@ -42,7 +42,7 @@ CREATE INDEX idx_trade_trade_date ON trade.trade (trade_date);
 
 CREATE TABLE trade.trade_bond
 (
-    order_unique_id                     VARCHAR(18) NOT NULL,
+    order_unique_id                     SERIAL,
     issuer_account_number               VARCHAR(15),
     intermediary_code                   VARCHAR(4),
     intermediary_account_identifier     VARCHAR(15),
@@ -103,7 +103,7 @@ CREATE TABLE trade.trade_bond
 
 CREATE TABLE trade.trade_demand
 (
-    order_unique_id                           VARCHAR(18) NOT NULL,
+    order_unique_id                           SERIAL,
     intermediary_code                         VARCHAR(4),
     intermediary_account_identifier           VARCHAR(15),
     transaction_status                        INTEGER,
@@ -176,7 +176,7 @@ CREATE TABLE trade.trade_demand
 
 CREATE TABLE trade.trade_equity
 (
-    order_unique_id                     VARCHAR(18) NOT NULL,
+    order_unique_id                     SERIAL,
     issuer_account_number               VARCHAR(15),
     intermediary_code                   VARCHAR(4),
     intermediary_account_identifier     VARCHAR(15),
@@ -241,7 +241,7 @@ CREATE TABLE trade.trade_equity
 
 CREATE TABLE trade.trade_fund
 (
-    order_unique_id                     VARCHAR(18) NOT NULL,
+    order_unique_id                     SERIAL,
     transaction_type_detail             VARCHAR(2),
     dividend_option                     VARCHAR(255),
     average_cost_per_unit               DECIMAL(21, 6),
@@ -267,7 +267,7 @@ CREATE TABLE trade.trade_fund
 
 CREATE TABLE trade.trade_term
 (
-    order_unique_id                 VARCHAR(18) NOT NULL,
+    order_unique_id                 SERIAL,
     issuer_account_number           VARCHAR(15),
     intermediary_code               VARCHAR(4),
     intermediary_account_identifier VARCHAR(15),
